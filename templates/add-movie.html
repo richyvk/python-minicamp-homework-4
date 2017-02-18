@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}RMDB - Add Movie{% endblock %}
+
+{% block main_content %}
+<form action="{{ url_for('movie') }}" method="POST">
+	<input type="text" name="title">
+	<br>
+	<input type="text" name="year">
+	<br>
+	<input type="text" name="genre">
+	<br>
+	<input type="text" name="description">
+	<br>
+	<input type="text" name="rating">
+	<br>
+	<input type="submit" value="submit">
+</form>
+{% endblock %}

@@ -15,11 +15,11 @@ def index():
 def movie():
     if request.method == 'POST':
 
-        m_title = request.form.get('title')
-        m_year = request.form.get('year')
-        m_genre = request.form.get('genre')
-        m_description = request.form.get('description')
-        m_rating = request.form.get('rating')
+        m_title = request.form.get('title').lower()
+        m_year = request.form.get('year').lower()
+        m_genre = request.form.get('genre').lower()
+        m_description = request.form.get('description').lower()
+        m_rating = request.form.get('rating').lower()
         print(m_title, m_year, m_genre, m_description, m_rating)
 
         try:
@@ -63,7 +63,7 @@ def title_search(title):
         db = records.Database(DB)
         print("Connected to DB")
         rows = db.query('SELECT * FROM movies WHERE title=:title',
-                        title=title)
+                        title=title.lower())
         print("Success: rows selected")
     except:
         db.rollback()

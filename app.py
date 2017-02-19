@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 import records
 
 app = Flask(__name__)
@@ -37,6 +37,6 @@ def movie():
             db.rollback()
             print("Error adding record")
         finally:
-            return render_template('index.html')
+            return redirect(url_for('index'))
     else:
         return render_template('add-movie.html')

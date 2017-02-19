@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}RMDB - API{% endblock %}
+
+{% block main_content %}
+	<h1>RMDB - API details</h1>
+	<p>RMDB can return content in JSON format for ingesting into your application. Two options are available:</p>
+	<ul>
+		<li>Return all movies<br>
+		<code>http://localhost:5000/movies/</code></li>
+		<li>Search by title<br>
+		<code>http://localhost:5000/search/&lt;movie_title&gt;</code></li>
+	</ul>
+
+
+{% endblock %}

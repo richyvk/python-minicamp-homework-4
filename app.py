@@ -62,7 +62,8 @@ def title_search(title):
     try:
         db = records.Database(DB)
         print("Connected to DB")
-        rows = db.query('SELECT * FROM movies WHERE title=:title',
+        query = 'SELECT * FROM movies WHERE title=:title'
+        rows = db.query(query,
                         title=title.lower())
         print("Success: rows selected")
     except:
@@ -71,3 +72,8 @@ def title_search(title):
     finally:
         movies = {'movies': rows.as_dict()}
         return jsonify(movies)
+
+
+@app.route('/api/')
+def api_details():
+    return render_template('api.html')

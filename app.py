@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, jsonify, render_template, request, redirect, url_for
 import records
 
 app = Flask(__name__)
@@ -40,3 +40,34 @@ def movie():
             return redirect(url_for('index'))
     else:
         return render_template('add-movie.html')
+
+
+@app.route('/movies/')
+def movies_json():
+    try:
+        db = records.Database(DB)
+        print("Connected to DB")
+        rows = db.query('SELECT * FROM movies')
+        print("Success: all rows selected")
+    except:
+        db.rollback()
+        print("Error retreiving records")
+    finally:
+        movies = {'movies': rows.as_dict()}
+        return jsonify(movies)
+
+
+@app.route('/search/<title>')
+def title_search(title):
+    try:
+        db = records.Database(DB)
+        print("Connected to DB")
+        rows = db.query('SELECT * FROM movies WHERE title=:title',
+                        title=title)
+        print("Success: rows selected")
+    except:
+        db.rollback()
+        print("Error retreiving records")
+    finally:
+        movies = {'movies': rows.as_dict()}
+        return jsonify(movies)

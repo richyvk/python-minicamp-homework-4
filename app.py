@@ -84,7 +84,8 @@ def all_movies():
     try:
         db = records.Database(DB)
         print("Connected to DB")
-        query = 'SELECT * FROM movies ORDER BY movies.rating DESC, movies.title'
+        query = 'SELECT * FROM movies ORDER BY \
+                 movies.rating DESC, movies.title'
         rows = db.query(query)
         print("Success: rows selected")
     except:

@@ -50,7 +50,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">View Movies</a>
+                        <a href="{{ url_for('all_movies') }}">View Movies</a>
                     </li>
                     <li>
                         <a href="{{ url_for('movie') }}">Add Movie</a>
@@ -69,7 +69,7 @@
     <div class="container">
 
         <div class="row">
-            <div class="col-xs-12 col-md-8">
+            <div class="col-xs-12 col-md-8 col-md-offset-2">
                 {% block main_content %}
                 {% endblock %}
             </div>

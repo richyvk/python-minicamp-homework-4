@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}RMDB - all movies{% endblock %}
+
+{% block main_content %}
+	<h1>All movies by rating</h1>
+	<table class="table">
+		<tr>
+			<th>Title</th>
+			<th>Year</th>
+			<th>Genre</th>
+			<th>Description</th>
+			<th>Rating</th>
+		</tr>
+	{% for movie in movies %}
+		<tr>
+			<td>{{ movie.title.capitalize() }}</td>
+			<td>{{ movie.year }}</td>
+			<td>{{ movie.genre.capitalize() }}</td>
+			<td>{{ movie.description.capitalize() }}</td>
+			<td>{{ movie.rating }}</td>
+		</tr>
+	{% endfor %}
+	</table>
+{% endblock %}

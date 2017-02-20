@@ -68,7 +68,7 @@ def title_search(title):
         print("Success: rows selected")
     except:
         db.rollback()
-        print("Error retreiving records")
+        print("Error retrieving records")
     finally:
         movies = {'movies': rows.as_dict()}
         return jsonify(movies)
@@ -77,3 +77,21 @@ def title_search(title):
 @app.route('/api/')
 def api_details():
     return render_template('api.html')
+
+
+@app.route('/all-movies/')
+def all_movies():
+    try:
+        db = records.Database(DB)
+        print("Connected to DB")
+        query = 'SELECT * FROM movies ORDER BY movies.rating DESC, movies.title'
+        rows = db.query(query)
+        print("Success: rows selected")
+    except:
+        db.rollback()
+        print("Error retrieving records")
+    finally:
+        # row_list = []
+        # for row in rows:
+        #     row_list.append(row.title)
+        return render_template('all-movies.html', movies=rows)
